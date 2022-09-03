@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "strict": true,
+    "skipLibCheck": true,
+    "jsx": "react",
+    "baseUrl": "src",
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictNullChecks": false,
+    "incremental": true,
+    "allowJs": true,
+    "types": ["node"]
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "coverage",
+    "public",
+    "webpack.config.js"
+  ]
+}
