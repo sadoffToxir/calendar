@@ -1,56 +1,61 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: './src/index.tsx',
 
   module: {
     rules: [
       {
         test: /\.s?[ac]ss$/,
-        use: ["style-loader", "css-loader", "sass-loader"],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(js|jsx|ts|tsx)$/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
         },
         exclude: /node_modules/,
       },
       {
         test: /\.(png|jpe?g|gif|svg|webp|ico)$/i,
         type:
-          process.env.NODE_ENV === "production" ? "asset" : "asset/resource",
+          process.env.NODE_ENV === 'production' ? 'asset' : 'asset/resource',
       },
       {
         test: /\.(woff2?|eot|ttf|otf)$/i,
-        type: "asset/resource",
+        type: 'asset/resource',
       },
     ],
   },
 
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js",
-    assetModuleFilename: "assets/[hash][ext][query]",
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js',
+    assetModuleFilename: 'assets/[hash][ext][query]',
     clean: true,
   },
 
-  mode: process.env.NODE_ENV || "development",
-  target: process.env.NODE_ENV === "production" ? "browserslist" : "web",
+  mode: process.env.NODE_ENV || 'development',
+  target: process.env.NODE_ENV === 'production' ? 'browserslist' : 'web',
 
-  resolve: { modules: [path.resolve(__dirname, "src"), "node_modules"] },
+  resolve: {
+    extensions: ['', '.js', '.jsx', '.ts', '.tsx'],
+    plugins: [new TsconfigPathsPlugin({ configFile: 'tsconfig.json' })],
+    // modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+  },
 
-  devtool: "source-map",
+  devtool: 'source-map',
 
   devServer: {
     hot: true,
-    static: "./dist",
+    static: './dist',
   },
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html",
+      template: './src/index.html',
     }),
   ],
 };
