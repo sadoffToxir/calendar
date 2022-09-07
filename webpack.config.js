@@ -42,10 +42,11 @@ module.exports = {
 
   resolve: {
     extensions: ['', '.js', '.jsx', '.ts', '.tsx'],
+    // Plugin for aliases
     plugins: [new TsconfigPathsPlugin({ configFile: 'tsconfig.json' })],
-    // modules: [path.resolve(__dirname, 'src'), 'node_modules'],
   },
 
+  // For detecting errors in code not in the bundle
   devtool: 'source-map',
 
   devServer: {

@@ -1,4 +1,5 @@
 {
+  // Config for aliases
   "ts-node": {
     "require": ["tsconfig-paths/register"]
   },
@@ -20,6 +21,7 @@
     "allowJs": true,
     "types": ["node"],
 
+    // Aliases
     "paths": {
       "@/*": ["*"],
       "@saga/*": ["./app/store/saga/*"],
